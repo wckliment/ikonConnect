@@ -59,47 +59,59 @@
                 </div>
             </div>
 
-            <!-- Step 2: Schedule Form (initially hidden) -->
-            <div class="form-container hidden" id="appointment-form-step">
-                <h2 class="form-title">Schedule Appointment</h2>
+        <!-- Step 2: Schedule Form (initially hidden) -->
+        <div class="form-container hidden" id="appointment-form-step">
+            <h2 class="form-title">Schedule Appointment</h2>
 
-                <div class="form-group">
-                    <label for="appointmentType">Appointment Type *</label>
-                    <select id="appointmentType">
-                        <option value="">Select Visit Reason</option>
-                        <option value="exam">New Patient Exam</option>
-                        <option value="cleaning">Cleaning</option>
-                        <option value="emergency">Emergency Visit</option>
-                    </select>
+            <div class="form-row">
+                <!-- Left: Form Fields -->
+                <div class="form-fields">
+                    <div class="form-group">
+                        <label for="appointmentType">Appointment Type *</label>
+                        <select id="appointmentType">
+                            <option value="">Select Visit Reason</option>
+                            <option value="exam">New Patient Exam</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="emergency">Emergency Visit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appointmentDate">Preferred Appointment Date *</label>
+                        <input type="text" id="appointmentDate" placeholder="Select a date" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="Enter your email address" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">Request Appointment</button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="appointmentDate">Preferred Appointment Date *</label>
-                    <input type="text" id="appointmentDate" placeholder="Select a date" />
-                </div>
-
-                <div class="form-group">
-                    <label for="fullName">Full Name *</label>
-                    <input type="text" id="fullName" placeholder="Enter your full name" />
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" placeholder="Enter your phone number" />
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" placeholder="Enter your email address" />
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="submit-btn">Request Appointment</button>
+                <!-- Right: Time Slots -->
+                <div class="time-slots-wrapper">
+                    <h3 class="time-slot-heading">Select a Time</h3>
+                    <div class="time-slot">10:00 AM</div>
+                    <div class="time-slot">11:00 AM</div>
+                    <div class="time-slot">1:00 PM</div>
+                    <div class="time-slot">2:30 PM</div>
+                    <div class="time-slot">4:00 PM</div>
                 </div>
             </div>
-
         </div>
-    </div>
 
     <script src="scripts/scheduler.js"></script>
 
