@@ -1,214 +1,101 @@
-/* General reset and background */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #f6f6f6;
+    background-color: #e8f0eb;
+    /* greenish-gray */
 }
 
-/* Container */
-.content-wrapper {
+.hidden {
+display: none !important;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0;
     display: flex;
-    max-width: 1100px;
-    margin: 40px auto 40px 0;
-    /* 👈 Aligned left */
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
+    padding: 60px 20px 60px 300px;
 }
 
-/* Left column (Info Panel) */
 .left-column {
-    width: 45%;
-    background-color: #e8f7f3;
-    padding: 48px 40px 48px 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Logo Section */
-.left-column .logo {
-    max-width: 140px;
-    margin-bottom: 24px;
-}
-
-.left-column h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 12px;
+    width: 50%;
+    padding-right: 40px;
     color: #2d3436;
 }
 
-.left-column p {
-    margin-bottom: 24px;
-    font-size: 0.95rem;
-    color: #555;
+.headline {
+    font-size: 1.25rem;
     line-height: 1.6;
+    margin-bottom: 24px;
 }
 
-.hours {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #444;
+.brand-name {
+    font-weight: 500;
+    color: #7f8c8d;
+    font-size: 1rem;
 }
 
+.description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 28px;
+    color: #555;
+}
 
+.hours p {
+    font-size: 0.95rem;
+    margin: 4px 0;
+}
 
-/* Right column (Form) */
 .right-column {
-    width: 55%;
-    padding: 32px 40px;
+    width: 50%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
 }
 
-.right-column form {
+/* Form container inside right-column box */
+.form-container {
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
-label {
+/* Section title */
+.form-title {
+    font-size: 1.1rem;
     font-weight: 600;
+    color: #2d3436;
+    margin-bottom: 24px;
+}
+
+/* Label and input group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
     font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 6px;
     color: #2d3436;
 }
 
-input {
+.form-group select,
+.form-group input[type="date"] {
     padding: 10px 14px;
-    background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: .95rem;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
+    font-size: 0.95rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s ease;
 }
-input:focus {
+
+.form-group select:focus,
+.form-group input[type="date"]:focus {
     border-color: #00b894;
-    background-color: #fff;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
-}
-
-button[type="submit"] {
-    background-color: #00b894;
-    color: white;
-    font-weight: 600;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    margin-top: 12px;
-}
-
-button[type="submit"]:hover {
-    background-color: #00977b;
-    box-shadow: 0 2px 6px rgba(0, 183, 148, 0.2);
-}
-
-
-
-.time-slots {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.time-slot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff;
-    border: 2px solid #00b894;
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-weight: 500;
-    cursor: pointer;
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px;
-    transition: all 0.3s ease;
-}
-
-.form-row {
-    display: flex !important;
-    gap: 32px;
-    align-items: flex-start;
-    flex-wrap: nowrap;
-    /* Makes it responsive on smaller screens */
-}
-
-/* ⬅️ Left half: the calendar + patient info form */
-.form-wrapper {
-    flex: 1;
-    min-width: 260px;
-    max-height: 400px;
-    /* Add this */
-    overflow-y: auto;
-}
-
-/* ➡️ Right half: time slots */
-.time-slots-wrapper {
-    flex: 1;
-    min-width: 260px;
-}
-
-.time-slot:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    background-color: #f9fffd;
-}
-
-.time-slots-wrapper h3 {
-    margin-top: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #2d3436;
-}
-
-@media (max-width: 768px) {
-
-    .left-column,
-    .right-column {
-        padding: 24px 20px;
-    }
-}
-
-
-.time-label {
-    flex: 1;
-    padding: 12px 16px;
-    font-weight: 500;
-    color: #2d3436;
-    transition: flex 0.3s ease;
-}
-
-.confirm-btn {
-    background-color: #00b894;
-    color: white;
-    font-weight: 600;
-    padding: 12px 20px;
-    border: none;
-    border-left: 1px solid #00b894;
-    height: 100%;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap;
-}
-
-.time-slot:hover .time-label {
-    flex: 0.5;
-}
-
-.time-slot:hover .confirm-btn {
-    opacity: 1;
-    transform: scaleX(1);
-}
-
-.right-content {
-    width: 100%;
+    background-color: #fff;
 }
