@@ -4,68 +4,101 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ikonConnect Scheduler</title>
+    <title>ikonConnect</title>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- Your main stylesheet -->
     <link rel="stylesheet" href="styles/main.css" />
+
+    <!-- ✅ Flatpickr styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+    <!-- ✅ Flatpickr script -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="left-column">
-        <p class="headline">
-            Join the <strong>hundreds</strong> of patients who<br />
-            have received <strong>excellent</strong> care from<br />
-            <span class="brand-name">Organic Dentistry</span>
-        </p>
+    <div class="container">
+        <div class="left-column">
+            <p class="headline">
+                Join the <strong>hundreds</strong> of patients who<br />
+                have received <strong>excellent</strong> care from<br />
+                <span class="brand-name">Organic Dentistry</span>
+            </p>
 
-        <p class="description">
-            We know that going to the dentist isn’t your favorite<br />
-            activity. With our kind 5-star staff, our transparent pricing,<br />
-            our cozy and clean office, and our modern amenities,<br />
-            you can receive the dental care you deserve in the most<br />
-            comfortable way possible.
-        </p>
+            <p class="description">
+                We know that going to the dentist isn’t your favorite<br />
+                activity. With our kind 5-star staff, our transparent pricing,<br />
+                our cozy and clean office, and our modern amenities,<br />
+                you can receive the dental care you deserve in the most<br />
+                comfortable way possible.
+            </p>
 
-        <div class="hours">
-            <p><strong>Monday</strong> 8am – 5pm</p>
-            <p><strong>Tuesday</strong> 8am – 5pm</p>
-            <p><strong>Wednesday</strong> 11am – 4pm</p>
-            <p><strong>Thursday</strong> 8am – 5pm</p>
-            <p><strong>Friday</strong> 8am – 3pm</p>
-            <p><strong>Saturday–Sunday</strong> Closed</p>
-        </div>
-    </div>
-
-    <div class="right-column">
-    <div class="step-one">
-        <h2 class="form-title">Let's get started</h2>
-        <p class="step-description">Are you a new or returning patient?</p>
-        <div class="patient-type-buttons">
-            <button class="patient-btn" data-type="new">New Patient</button>
-            <button class="patient-btn" data-type="returning">Returning Patient</button>
-        </div>
-    </div>
-
-    <!-- Hidden by default, revealed after selection -->
-    <div class="form-container hidden" id="appointment-form-step">
-        <h2 class="form-title">Schedule Appointment</h2>
-
-        <div class="form-group">
-            <label for="appointmentType">Appointment Type *</label>
-            <select id="appointmentType">
-                <option value="">Select Visit Reason</option>
-                <option value="exam">New Patient Exam</option>
-                <option value="cleaning">Cleaning</option>
-                <option value="emergency">Emergency Visit</option>
-            </select>
+            <div class="hours">
+                <p><strong>Monday</strong> 8am – 5pm</p>
+                <p><strong>Tuesday</strong> 8am – 5pm</p>
+                <p><strong>Wednesday</strong> 11am – 4pm</p>
+                <p><strong>Thursday</strong> 8am – 5pm</p>
+                <p><strong>Friday</strong> 8am – 3pm</p>
+                <p><strong>Saturday–Sunday</strong> Closed</p>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="appointmentDate">Appointment Date *</label>
-            <input type="date" id="appointmentDate" />
+        <div class="right-column">
+
+            <!-- Step 1: New or Returning -->
+            <div class="step-one">
+                <h2 class="form-title">Let's get started</h2>
+                <p class="step-description">Are you a new or returning patient?</p>
+                <div class="patient-type-buttons">
+                    <button class="patient-btn" data-type="new">New Patient</button>
+                    <button class="patient-btn" data-type="returning">Returning Patient</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Schedule Form (initially hidden) -->
+            <div class="form-container hidden" id="appointment-form-step">
+                <h2 class="form-title">Schedule Appointment</h2>
+
+                <div class="form-group">
+                    <label for="appointmentType">Appointment Type *</label>
+                    <select id="appointmentType">
+                        <option value="">Select Visit Reason</option>
+                        <option value="exam">New Patient Exam</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="emergency">Emergency Visit</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Appointment Date *</label>
+                    <input type="text" id="appointmentDate" placeholder="Select a date" />
+                </div>
+
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" placeholder="Enter your email address" />
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">Request Appointment</button>
+                </div>
+            </div>
+
         </div>
-    </div>
     </div>
 
     <script src="scripts/scheduler.js"></script>

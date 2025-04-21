@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Show step 2 (the form)
             appointmentForm.classList.remove('hidden');
+
+            // ✅ Initialize Flatpickr
+            flatpickr("#appointmentDate", {
+                minDate: "today",
+                dateFormat: "m/d/Y"
+            });
         });
     });
 });
