@@ -1,37 +1,114 @@
+/* General reset and background */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: #f6f6f6;
 }
 
-#ikon-scheduler-wrapper {
+/* Container */
+.content-wrapper {
     display: flex;
     max-width: 1100px;
-    /* ⬅️ make it wider */
-    margin: 40px auto;
+    margin: 40px auto 40px 0;
+    /* 👈 Aligned left */
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     overflow: hidden;
 }
 
+/* Left column (Info Panel) */
 .left-column {
-    width: 35%;
-    /* ⬅️ shrink a little */
+    width: 45%;
     background-color: #e8f7f3;
-    padding: 24px;
+    padding: 48px 40px 48px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+/* Logo Section */
 .left-column .logo {
-    max-width: 120px;
-    margin-bottom: 16px;
+    max-width: 140px;
+    margin-bottom: 24px;
 }
 
-.right-column {
-    width: 65%;
-    /* ⬅️ give us more space */
-    padding: 32px;
+.left-column h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #2d3436;
 }
+
+.left-column p {
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.hours {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+
+
+/* Right column (Form) */
+.right-column {
+    width: 55%;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-column form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #2d3436;
+}
+
+input {
+    padding: 10px 14px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: .95rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+input:focus {
+    border-color: #00b894;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
+}
+
+button[type="submit"] {
+    background-color: #00b894;
+    color: white;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 12px;
+}
+
+button[type="submit"]:hover {
+    background-color: #00977b;
+    box-shadow: 0 2px 6px rgba(0, 183, 148, 0.2);
+}
+
+
 
 .time-slots {
     display: flex;
@@ -42,27 +119,25 @@ body {
 
 .time-slot {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     background-color: #ffffff;
     border: 2px solid #00b894;
     border-radius: 8px;
     padding: 12px 16px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
     overflow: hidden;
     width: 100%;
     max-width: 300px;
+    transition: all 0.3s ease;
 }
 
-
-
 .form-row {
-    display: flex;
+    display: flex !important;
     gap: 32px;
     align-items: flex-start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     /* Makes it responsive on smaller screens */
 }
 
@@ -70,6 +145,9 @@ body {
 .form-wrapper {
     flex: 1;
     min-width: 260px;
+    max-height: 400px;
+    /* Add this */
+    overflow-y: auto;
 }
 
 /* ➡️ Right half: time slots */
@@ -78,28 +156,26 @@ body {
     min-width: 260px;
 }
 
+.time-slot:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    background-color: #f9fffd;
+}
+
 .time-slots-wrapper h3 {
     margin-top: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3436;
 }
+
 @media (max-width: 768px) {
-    .form-row {
-        flex-direction: column;
+
+    .left-column,
+    .right-column {
+        padding: 24px 20px;
     }
 }
 
-.time-slot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 2px solid #00b894;
-    border-radius: 8px;
-    background-color: #fff;
-    overflow: hidden;
-    width: 100%;
-    max-width: 300px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
 
 .time-label {
     flex: 1;
@@ -131,4 +207,8 @@ body {
 .time-slot:hover .confirm-btn {
     opacity: 1;
     transform: scaleX(1);
+}
+
+.right-content {
+    width: 100%;
 }
