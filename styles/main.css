@@ -347,3 +347,23 @@ button:active {
     color: #2d3436;
     line-height: 1.6;
 }
+
+
+
+/* Styles for the 'Soonest Available' checkbox row */
+#soonestCheckbox {
+    margin-right: 8px;
+}
+
+.soonest-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* Style for the soonest available slot text */
+#availableSlotInfo {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #444;
+}
