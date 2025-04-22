@@ -94,6 +94,8 @@
                         <p id="availableSlotInfo"></p>
                     </div>
 
+                    <p class="instruction-text">🕒 Please select and confirm a time to continue.</p>
+
 
                     <div class="form-group">
                         <label for="fullName">Full Name *</label>
@@ -110,9 +112,11 @@
                         <input type="email" id="email" placeholder="Enter your email address" />
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="submit-btn">Request Appointment</button>
-                    </div>
+
+                    <p style="margin-top: 12px; font-size: 14px;">
+                        <a href="#" id="back-to-start">← Go back to Let's get started</a>
+                    </p>
+
                 </div>
 
                 <!-- Right: Time Slots -->
@@ -146,6 +150,57 @@
                 </div>
             </div>
         </div>
+
+    <!-- Step 3: Patient Forms (Test Screen) -->
+    <div class="form-section hidden" id="patient-forms-step">
+        <h2 class="form-title">You're almost done!</h2>
+        <p>Thanks! You've selected a time. Now we just need a few more details.</p>
+
+        <!-- Reason for Visit -->
+        <div class="form-group">
+            <label for="reason">Reason for Visit</label>
+            <input type="text" id="reason" placeholder="Optional..." />
+        </div>
+
+        <!-- Standard Forms List -->
+        <div class="standard-forms-list">
+            <div class="form-row">
+                <span>Authorizations and Acknowledgments</span>
+                <button class="start-btn">Start →</button>
+            </div>
+            <div class="form-row">
+                <span>Communication Release</span>
+                <button class="start-btn">Start →</button>
+            </div>
+            <div class="form-row">
+                <span>Dental History</span>
+                <button class="start-btn">Start →</button>
+            </div>
+            <div class="form-row">
+                <span>Insurance Information</span>
+                <button class="start-btn">Start →</button>
+            </div>
+            <div class="form-row">
+                <span>Medical History</span>
+                <button class="start-btn">Start →</button>
+            </div>
+            <div class="form-row">
+                <span>Patient Information</span>
+                <button class="start-btn">Start →</button>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group">
+            <button type="submit" class="submit-btn">Submit Appointment</button>
+        </div>
+
+        <!-- Back link -->
+        <p style="margin-top: 12px; font-size: 14px;">
+            <a href="#" id="back-to-time">← Go back to time selection</a>
+        </p>
+    </div>
+
 
     <script src="scripts/scheduler.js"></script>
 
