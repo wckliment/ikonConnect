@@ -332,3 +332,18 @@ button:active {
 .site-logo:hover {
     transform: scale(1.05);
 }
+
+.practice-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #2d3436;
+}
+
+.tagline {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #2d3436;
+    line-height: 1.6;
+}
