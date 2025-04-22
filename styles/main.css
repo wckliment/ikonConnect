@@ -13,7 +13,7 @@ display: none !important;
     max-width: 1200px;
     margin: 0;
     display: flex;
-    padding: 60px 20px 60px 300px;
+    padding: 60px 20px 60px 450px;
 }
 
 .left-column {
@@ -313,4 +313,22 @@ button:active {
 /* 5. Confirm button hover polish */
 .confirm-btn:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.logo-wrapper {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    z-index: 999;
+}
+
+.site-logo {
+    height: 120px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
 }
