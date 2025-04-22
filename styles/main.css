@@ -334,10 +334,15 @@ button:active {
 }
 
 .practice-name {
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #2d3436;
+    font-size: 2rem;
+    /* Larger font size */
+    font-weight: 800;
+    /* Bold weight for emphasis */
+    color: #00b894;
+    /* Bright, welcoming green */
+    margin-bottom: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    /* Optional soft shadow for polish */
 }
 
 .tagline {
@@ -474,4 +479,18 @@ button:active {
     margin: 8px 0;
     font-size: 0.95rem;
     color: #333;
+}
+
+.form-error {
+    color: #d63031;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+/* Apply fadeIn animation to all major steps */
+.step-one,
+#appointment-form-step,
+#patient-forms-step,
+#confirmation-step {
+    animation: fadeIn 1.5s ease-out;
 }

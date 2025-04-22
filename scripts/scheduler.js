@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const timeSlots = document.getElementById('time-slots');
     const soonestCheckbox = document.getElementById('soonestCheckbox');
     const availableSlotInfo = document.getElementById('availableSlotInfo');
+    const formError = document.getElementById('formError');
 
     const formsStep = document.getElementById('patient-forms-step');
     const backToTimeLink = document.getElementById('back-to-time');
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const confirmEmail = document.getElementById('confirm-email');
     const confirmReason = document.getElementById('confirm-reason');
 
-    // ✅ Show the form after selecting patient type
+    // Show the form after selecting patient type
     patientButtons.forEach(button => {
         button.addEventListener('click', () => {
             stepOne.classList.add('hidden');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ✅ Initialize flatpickr and store the instance
+    // Initialize Flatpickr
     const flatpickrInstance = flatpickr(appointmentDate, {
         minDate: 'today',
         dateFormat: 'm/d/Y',
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ✅ Soonest available checkbox logic
+    // Soonest Available checkbox logic
     soonestCheckbox.addEventListener('change', function () {
         if (this.checked) {
             flatpickrInstance.clear();
@@ -64,30 +65,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ✅ Move to Forms Screen when a time is confirmed
+    // Confirm time selection — with validation
     confirmButtons.forEach(button => {
         button.addEventListener('click', () => {
-            selectedTime = button.previousElementSibling.textContent; // Save the selected time
+            const type = document.getElementById('appointmentType').value;
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const date = document.getElementById('appointmentDate').value;
+            const usingSoonest = soonestCheckbox.checked;
+
+            if (
+                !type ||
+                !name ||
+                !phone ||
+                !email ||
+                (!date && !usingSoonest)
+            ) {
+                formError.classList.remove('hidden');
+                return;
+            }
+
+            // ✅ Hide error if showing
+            formError.classList.add('hidden');
+
+            // Save time and move forward
+            selectedTime = button.previousElementSibling.textContent;
             appointmentForm.classList.add('hidden');
             formsStep.classList.remove('hidden');
         });
     });
 
-    // ✅ Allow going back to time selection
+    // Go back to time selection
     backToTimeLink.addEventListener('click', (e) => {
         e.preventDefault();
         formsStep.classList.add('hidden');
         appointmentForm.classList.remove('hidden');
     });
 
-    // ✅ Allow going back to Step 1
+    // Go back to start
     backToStartLink.addEventListener('click', (e) => {
         e.preventDefault();
         appointmentForm.classList.add('hidden');
         stepOne.classList.remove('hidden');
     });
 
-    // ✅ Submit forms and show confirmation screen
+    // Submit forms and show confirmation screen
     submitBtn.addEventListener('click', () => {
         const name = document.getElementById('fullName').value;
         const rawType = document.getElementById('appointmentType').value;
@@ -106,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmEmail.textContent = email;
         confirmReason.textContent = reason;
 
-        // Show confirmation screen
+        // Show confirmation
         formsStep.classList.add('hidden');
         confirmationStep.classList.remove('hidden');
     });
