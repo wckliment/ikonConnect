@@ -85,20 +85,28 @@ display: none !important;
 }
 
 .form-group select,
-.form-group input[type="date"] {
-    padding: 10px 14px;
+.form-group input[type="date"],
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"] {
+    padding: 12px 16px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    background-color: #f9f9f9;
-    transition: border-color 0.2s ease;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fdfdfd;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-group select:focus,
-.form-group input[type="date"]:focus {
+.form-group input[type="date"]:focus,
+.form-group input[type="text"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="email"]:focus {
     border-color: #00b894;
     outline: none;
     background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 184, 148, 0.2);
 }
 
 
@@ -135,17 +143,18 @@ display: none !important;
 }
 
 .time-slot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 16px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
 }
 
 .time-slot:hover {
@@ -157,12 +166,18 @@ display: none !important;
 .time-label {
     color: #2d3436;
     font-weight: 500;
-    flex-shrink: 0;
+    flex: 1;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
 }
 
 /* Confirm button is hidden by default */
 .confirm-btn {
-    display: none;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     background-color: #0984e3;
     color: white;
     border: none;
@@ -171,16 +186,131 @@ display: none !important;
     font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 /* Reveal button on hover */
 .time-slot:hover .confirm-btn {
-    display: inline-block;
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 /* Hover effect on the confirm button itself */
 .confirm-btn:hover {
     background-color: #0077cc;
+}
+
+.time-slot:hover .time-label {
+    flex: 0.5;
+}
+
+.submit-btn {
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #009974;
+}
+
+
+/* Style the intro section (Step 1) */
+.step-one {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Style the section title inside step one */
+.step-one .form-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d3436;
+    margin-bottom: 16px;
+}
+
+/* Question under the title */
+.step-one .step-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 24px;
+}
+
+/* Buttons container */
+.patient-type-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* New / Returning buttons */
+.patient-btn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2d3436;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.patient-btn:hover {
+    background-color: #00b894;
+    color: #fff;
+    border-color: #00b894;
+}
+
+
+/* --- Enhancements & Animation Polish --- */
+
+/* 1. Fade-in animation for form container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container {
+    animation: fadeIn 3s ease-out;
+}
+
+/* 2. Button press animation */
+button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+
+/* 3. Focus effect for date input */
+#appointmentDate:focus {
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+}
+
+/* 4. Time slot hover float effect */
+.time-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 5. Confirm button hover polish */
+.confirm-btn:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
