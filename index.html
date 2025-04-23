@@ -81,18 +81,23 @@
             <div class="form-row">
                 <!-- Left: Form Fields -->
                 <div class="form-fields">
-                    <div class="form-group">
+                    <div class="form-group new-only">
                         <label for="appointmentType">Appointment Type *</label>
                         <select id="appointmentType">
                             <option value="">Select Visit Reason</option>
                             <option value="exam">Cleaning</option>
-                            <option value="cleaning">Implant Consult</option>
-                            <option value="emergency">Wisdom Tooth Consult</option>
-                            <option value="other">Ortho Consult</option>
-                            <option value="other">Tooth Ache</option>
-                            <option value="other">Botox Consult</option>
-
+                            <option value="implant">Implant Consult</option>
+                            <option value="wisdom">Wisdom Tooth Consult</option>
+                            <option value="ortho">Ortho Consult</option>
+                            <option value="toothache">Tooth Ache</option>
+                            <option value="botox">Botox Consult</option>
                         </select>
+                    </div>
+
+                    <div class="form-group returning-only hidden">
+                        <label for="returningReason">What would you like to be seen for? *</label>
+                        <input type="text" id="returningReason" placeholder="Briefly describe your reason for visiting" />
+                        <p style="font-size: 0.85rem; color: #555;">A team member will contact you to finalize the details.</p>
                     </div>
 
                     <div class="form-group">
