@@ -147,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
         email,
         appointment_type: typeText,
         preferred_time: `${date} ${selectedTime}`,
-        notes: reason
+        notes: reason,
+        patient_type: patientType
     }).then(response => {
         console.log('Appointment request submitted!', response.data);
         // Could show a success toast or animation here
