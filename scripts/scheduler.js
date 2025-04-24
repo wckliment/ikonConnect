@@ -139,6 +139,24 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmEmail.textContent = email;
         confirmReason.textContent = reason;
 
+          // POST to ikonPractice API
+    axios.post('http://localhost:5000/api/appointment-requests', {
+        name,
+        dob: null, // Optional if you aren't collecting DOB
+        phone,
+        email,
+        appointment_type: typeText,
+        preferred_time: `${date} ${selectedTime}`,
+        notes: reason
+    }).then(response => {
+        console.log('Appointment request submitted!', response.data);
+        // Could show a success toast or animation here
+    }).catch(err => {
+        console.error('Error submitting appointment request:', err);
+        alert("Something went wrong. Please try again.");
+    });
+
+    // Continue with confirmation screen
         formsStep.classList.add('hidden');
         confirmationStep.classList.remove('hidden');
     });
