@@ -98,7 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             formError.classList.add('hidden');
-            selectedTime = button.previousElementSibling.textContent;
+
+
+            selectedTime = button.parentElement.querySelector('.time-label').textContent.trim();
+
             appointmentForm.classList.add('hidden');
             formsStep.classList.remove('hidden');
         });
@@ -146,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
         phone,
         email,
         appointment_type: typeText,
-        preferred_time: `${date} ${selectedTime}`,
-        notes: reason,
+        preferred_time: date,
+        notes: `${reason} | Preferred Time: ${selectedTime}`, 
         patient_type: patientType
     }).then(response => {
         console.log('Appointment request submitted!', response.data);
