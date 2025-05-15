@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+</head>
+
+<body>
+    <script>
+        // ✅ Extract token from query string
+        const query = new URLSearchParams(window.location.search);
+        const token = query.get("token");
+
+        if (token) {
+            // ✅ Redirect to local Vite app
+            window.location.href = `http://localhost:5173/forms/fill/${token}`;
+        } else {
+            document.body.innerHTML = "<p>❌ Missing token in URL</p>";
+        }
+    </script>
+
+    <p>Redirecting to secure form...</p>
+</body>
+
+</html>

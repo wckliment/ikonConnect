@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         email,
         appointment_type: typeText,
         preferred_time: date,
-        notes: `${reason} | Preferred Time: ${selectedTime}`, 
+        notes: `${reason} | Preferred Time: ${selectedTime}`,
         patient_type: patientType
     }).then(response => {
         console.log('Appointment request submitted!', response.data);
@@ -164,4 +164,42 @@ document.addEventListener('DOMContentLoaded', function () {
         formsStep.classList.add('hidden');
         confirmationStep.classList.remove('hidden');
     });
+
+   // ✅ FORM START BUTTON LOGIC
+    const startButtons = document.querySelectorAll('.start-btn');
+
+ startButtons.forEach(button => {
+  button.addEventListener('click', async () => {
+    const formName = button.dataset.formName;
+    const patientName = document.getElementById('fullName').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const reason = document.getElementById('reason').value || '';
+    const appointmentType = document.getElementById('appointmentType')?.value || '';
+    const appointmentDate = document.getElementById('appointmentDate')?.value || '';
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/public-forms/generate-token', {
+        formName,
+        method: "website",
+        patientMetadata: {
+          name: patientName,
+          phone,
+          email,
+          reason,
+          appointmentType,
+          appointmentDate
+        }
+      });
+
+      const { link } = response.data;
+      window.open(link, "_blank"); // ✅ use dynamic link from backend
+    } catch (err) {
+      console.error("Failed to launch form:", err);
+      alert("This form is currently unavailable. Please contact the office.");
+    }
+  });
+});
+
+
 });
