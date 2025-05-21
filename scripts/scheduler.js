@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+  function getFormIdByName(name) {
+    const formMap = {
+      "Dental History": 18,
+      "Email and SMS Communication Release": 17,
+      "Authorizations and Acknowledgements": 15,
+    };
+    return formMap[name];
+  }
   const patientButtons = document.querySelectorAll('.patient-btn');
   const appointmentForm = document.getElementById('appointment-form-step');
   const stepOne = document.querySelector('.step-one');
@@ -188,26 +196,44 @@ document.addEventListener('DOMContentLoaded', function () {
       const appointmentType = document.getElementById('appointmentType')?.value || '';
       const appointmentDate = document.getElementById('appointmentDate')?.value || '';
 
-      try {
-        const response = await axios.post('http://localhost:5000/api/public-forms/generate-token', {
-          formName,
-          method: "website",
-          patientMetadata: {
-            name: patientName,
-            phone,
-            email,
-            reason,
-            appointmentType,
-            appointmentDate
-          }
-        });
 
-        const { link } = response.data;
-        window.open(link, "_blank");
-      } catch (err) {
-        console.error("Failed to launch form:", err);
-        alert("This form is currently unavailable. Please contact the office.");
-      }
+
+     try {
+  console.log({
+    formName,
+    patientMetadata: {
+      name: patientName,
+      phone,
+      email,
+      reason,
+      appointmentType,
+      appointmentDate
+    }
+  });
+
+ const response = await axios.post('http://localhost:5000/api/custom-form-tokens/public-generate', {
+  form_id: getFormIdByName(formName),
+  method: "website",
+  patient_id: null, // optionally set if you're matching a patient
+});
+
+
+const { token } = response.data;
+
+// ✅ Construct the link directly to ikonPractice
+const link = `http://localhost:5173/forms/custom/${token}`;
+
+// ✅ Mark as not completed
+localStorage.setItem(`formCompleted_${formName}`, "false");
+
+// ✅ Open the form in a new tab
+window.open(link, "_blank");
+
+} catch (err) {
+  console.error("Failed to launch form:", err);
+  alert("This form is currently unavailable. Please contact the office.");
+}
+
     });
   });
 });
