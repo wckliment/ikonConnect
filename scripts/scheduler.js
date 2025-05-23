@@ -45,6 +45,36 @@ document.addEventListener('DOMContentLoaded', function () {
     "Registration/HIPAA Form2"
   ];
 
+    // 🧠 Restore saved inputs
+  document.getElementById('fullName').value = localStorage.getItem('form_fullName') || '';
+  document.getElementById('phone').value = localStorage.getItem('form_phone') || '';
+  document.getElementById('email').value = localStorage.getItem('form_email') || '';
+  document.getElementById('reason').value = localStorage.getItem('form_reason') || '';
+  if (document.getElementById('appointmentType'))
+    document.getElementById('appointmentType').value = localStorage.getItem('form_appointmentType') || '';
+  if (document.getElementById('appointmentDate'))
+    document.getElementById('appointmentDate').value = localStorage.getItem('form_appointmentDate') || '';
+
+  // 💾 Save inputs to localStorage
+  document.getElementById('fullName').addEventListener('input', (e) => {
+    localStorage.setItem('form_fullName', e.target.value);
+  });
+  document.getElementById('phone').addEventListener('input', (e) => {
+    localStorage.setItem('form_phone', e.target.value);
+  });
+  document.getElementById('email').addEventListener('input', (e) => {
+    localStorage.setItem('form_email', e.target.value);
+  });
+  document.getElementById('reason').addEventListener('input', (e) => {
+    localStorage.setItem('form_reason', e.target.value);
+  });
+  document.getElementById('appointmentType')?.addEventListener('change', (e) => {
+    localStorage.setItem('form_appointmentType', e.target.value);
+  });
+  document.getElementById('appointmentDate')?.addEventListener('change', (e) => {
+    localStorage.setItem('form_appointmentDate', e.target.value);
+  });
+
   function checkFormsCompleted() {
     const allDone = requiredForms.every(name => localStorage.getItem(`formCompleted_${name}`) === 'true');
     submitBtn.disabled = !allDone;
@@ -186,6 +216,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // ✅ FORM START BUTTON LOGIC
   const startButtons = document.querySelectorAll('.start-btn');
 
+  // ✅ On page load, check which forms are already submitted
+startButtons.forEach(button => {
+  const formName = button.dataset.formName;
+  const completedKey = `formCompleted_${formName}`;
+  const isCompleted = localStorage.getItem(completedKey) === "true";
+
+  if (isCompleted) {
+    button.textContent = "✔ Submitted";
+    button.disabled = true;
+    button.classList.remove("bg-blue-600");
+    button.classList.add("bg-green-600", "text-white", "cursor-default");
+  }
+});
+
   startButtons.forEach(button => {
     button.addEventListener('click', async () => {
       const formName = button.dataset.formName;
@@ -214,7 +258,8 @@ document.addEventListener('DOMContentLoaded', function () {
  const response = await axios.post('http://localhost:5000/api/custom-form-tokens/public-generate', {
   form_id: getFormIdByName(formName),
   method: "website",
-  patient_id: null, // optionally set if you're matching a patient
+   patient_id: null, // optionally set if you're matching a patient
+  location_id: 6 ///make dynamic later if needed
 });
 
 
@@ -227,7 +272,11 @@ const link = `http://localhost:5173/forms/custom/${token}`;
 localStorage.setItem(`formCompleted_${formName}`, "false");
 
 // ✅ Open the form in a new tab
-window.open(link, "_blank");
+       window.open(link, "_blank");
+
+
+      // Recheck button enable/disable state
+      setTimeout(checkFormsCompleted, 500);
 
 } catch (err) {
   console.error("Failed to launch form:", err);
